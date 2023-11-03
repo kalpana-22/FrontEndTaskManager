@@ -27,8 +27,8 @@ export class MyServiceService {
   getTasksByUserId() {
     return this.http.get('http://localhost:8080/tasks/userId');
   }
-  postTask() {
-    return this.http.post('http://localhost:8080/tasks/add',String);
+  postTask(task: any): Observable<any> {
+    return this.http.post('http://localhost:8080/tasks/add', task);
   }
   deleteTask(id: number): Observable<any> {
     return this.http.delete(`http://localhost:8080/tasks/remove?id=${id}`);
