@@ -98,21 +98,6 @@
   
 
     <!-- Create Task Section -->
-    <!-- <div class="w3-container w3-padding-32" id="contact">
-      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Create New Task</h3>
-      <p>Lets get in touch and talk about your next tasks...</p>
-      <form action="/action_page.php" target="_blank">
-        <input class="w3-input w3-border" type="text" placeholder="Task Name" required name="name">
-        <select class="w3-select w3-section w3-border" placeholder="Status" required name="Status">
-            <option value="Todo">Todo</option>
-            <option value="InProgress">InProgress</option>
-            <option value="Completed">Completed</option>
-          </select>
-        <button class="w3-button w3-black w3-section" type="submit">
-          <i class="fa fa-paper-plane"></i> Create New Task
-        </button>
-      </form>
-    </div> -->
     <div class="w3-container w3-padding-32" id="contact">
         <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Create New Task</h3>
         <p>Lets get in touch and talk about your next tasks...</p>
@@ -133,7 +118,7 @@
 
     
     <!-- Update Task Section -->
-    <div class="w3-container w3-padding-32" id="contact">
+    <!-- <div class="w3-container w3-padding-32" id="contact">
         <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Update Task</h3>
         <p>Let's update your task...</p>
         <form action="/action_page.php" target="_blank">
@@ -151,7 +136,27 @@
             <i class="fa fa-paper-plane"></i> Update Task
           </button>
         </form>
+      </div> -->
+      <div class="w3-container w3-padding-32" id="updateTask">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Update Task</h3>
+        <p>Let's update your task...</p>
+        <form [formGroup]="updateTaskForm" (ngSubmit)="updateTask()">
+          <select class="w3-select w3-border" required formControlName="id">
+            <option value="" disabled selected>Select a Task</option>
+            <option *ngFor="let task of tasks" [value]="task.id">{{ task.name }}</option>
+          </select>
+          <select class="w3-select w3-section w3-border" required formControlName="status">
+            <option value="" disabled selected>Select a Status</option>
+            <option value="Todo">Todo</option>
+            <option value="InProgress">InProgress</option>
+            <option value="Completed">Completed</option>
+          </select>
+          <button class="w3-button w3-black w3-section" type="submit">
+            <i class="fa fa-paper-plane"></i> Update Task
+          </button>
+        </form>
       </div>
+      
 
       <!-- Delete Task -->
       <div class="w3-container w3-padding-32" id="contact">

@@ -13,13 +13,19 @@ export class HomeComponent implements OnInit {
 
   tasks: any[] = [];
   taskForm: FormGroup;
+  updateTaskForm: FormGroup;
 
   constructor(private myService: MyServiceService, private formBuilder: FormBuilder) {
     this.taskForm = this.formBuilder.group({
       name: ['', Validators.required],
       status: ['Todo', Validators.required]
     });
+    this.updateTaskForm = this.formBuilder.group({
+      id: [null, Validators.required],
+      status: [null, Validators.required]
+    });
   }
+
 
   ngOnInit(): void {
 
@@ -27,6 +33,7 @@ export class HomeComponent implements OnInit {
         this.tasks = data;
         console.log(this.tasks);
       });
+    this.loadData();
   }
 
   createTask() {
@@ -50,7 +57,6 @@ export class HomeComponent implements OnInit {
   
 
   loadData() {
-    // You can reload the task data here
     this.myService.getData().subscribe((data: any[]) => {
       this.tasks = data;
       console.log(this.tasks);
@@ -61,6 +67,22 @@ export class HomeComponent implements OnInit {
     this.myService.deleteTask(id).subscribe((response) => {
       console.log('Task deleted:', response);
     });
+  }
+
+  updateTask() {
+    if (this.updateTaskForm.valid) {
+      const formData = this.updateTaskForm.value;
+
+      this.myService.updateTask(formData).subscribe(
+        (response) => {
+          console.log('Task updated:', response);
+          this.loadData();
+        },
+        (error) => {
+          console.error('Error updating task:', error);
+        }
+      );
+    }
   }
 
 }
