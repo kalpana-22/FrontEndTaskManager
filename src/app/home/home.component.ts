@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   tasks: any[] = [];
   taskForm: FormGroup;
   updateTaskForm: FormGroup;
+  selectedStatus: string = 'All';
 
   constructor(private myService: MyServiceService, private formBuilder: FormBuilder) {
     this.taskForm = this.formBuilder.group({
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
       status: [null, Validators.required]
     });
   }
-
+  
 
   ngOnInit(): void {
 
@@ -84,5 +85,18 @@ export class HomeComponent implements OnInit {
       );
     }
   }
+
+  filterTasks(event: Event) {
+    this.selectedStatus = (event.target as HTMLSelectElement).value;
+    if (this.selectedStatus === 'All') {
+      this.loadData();
+    } else {
+      this.myService.getTasksByStatus(this.selectedStatus).subscribe((data: any[]) => {
+        this.tasks = data;
+      });
+    }
+  }
+  
+
 
 }

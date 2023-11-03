@@ -21,8 +21,8 @@ export class MyServiceService {
   getData(): Observable<Object[]> {
     return this.http.get<Object[]>('http://localhost:8080/tasks/allTasks');
   }
-  getTasksByStatus() {
-    return this.http.get('http://localhost:8080/tasks/type/{status}');
+  getTasksByStatus(status: string): Observable<Object[]> {
+    return this.http.get<Object[]>('http://localhost:8080/tasks/type/' + status);
   }
   getTasksByUserId() {
     return this.http.get('http://localhost:8080/tasks/userId');
