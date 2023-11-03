@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>TASK</b> Manager</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="#projects" class="w3-bar-item w3-button">Projects</a>
+      <a href="#about" class="w3-bar-item w3-button">About</a>
+      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+  </div>
+</div>
+
+  
+  <!-- Page content -->
+  <div class="w3-content w3-padding" style="max-width:1564px">
+  
+    <!-- Project Section -->
+    <div class="w3-container w3-padding-32" id="projects">
+      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">All Tasks</h3>
+    </div>
+  
+    <div class="w3-row-padding">
+      <table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Task</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let task of tasks">
+				<td>{{ task.id }}</td>
+				<td>{{ task.name }}</td>
+				<td>{{ task.status }}</td>
+			</tr>
+		</tbody>
+	</table>
+    </div>
+  
+    <!-- Filter Tasks -->
+
+    <div class="w3-container w3-padding-32" id="projects">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Filter Tasks</h3>
+      </div>
+
+      <div>
+        <select class="w3-select w3-section" >
+          <option value="All">All</option>
+          <option value="Todo">Todo</option>
+          <option value="InProgress">InProgress</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+      
+    
+      <div class="w3-row-padding">
+        <table>
+          <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Task</th>
+                  <th>Status</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let task of tasks">
+                  <td>{{ task.id }}</td>
+                  <td>{{ task.name }}</td>
+                  <td>{{ task.status }}</td>
+              </tr>
+          </tbody>
+      </table>
+      </div>
+
+
+  
+    <!-- About Section -->
+    <div class="w3-container w3-padding-32" id="about">
+      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+      <p>We are a dedicated team behind a web application that empowers users to effortlessly manage their tasks. Our mission is to simplify task management, 
+        providing a user-friendly platform where you can create, track, and organize your to-do list with ease. We understand the importance of staying organized 
+        in today's busy world, and our goal is to make your life more productive and efficient. Whether you're a professional looking to stay on top of work 
+        assignments or an individual seeking better personal task management, we are here to help you achieve your goals.
+      </p>
+    </div>
+  
+
+    <!-- Create Task Section -->
+    <div class="w3-container w3-padding-32" id="contact">
+      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Create New Task</h3>
+      <p>Lets get in touch and talk about your next tasks...</p>
+      <form action="/action_page.php" target="_blank">
+        <input class="w3-input w3-border" type="text" placeholder="Task Name" required name="name">
+        <select class="w3-select w3-section w3-border" placeholder="Status" required name="Status">
+            <option value="Todo">Todo</option>
+            <option value="InProgress">InProgress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        <button class="w3-button w3-black w3-section" type="submit">
+          <i class="fa fa-paper-plane"></i> Create New Task
+        </button>
+      </form>
+    </div>
+
+
+    
+    <!-- Update Task Section -->
+    <div class="w3-container w3-padding-32" id="contact">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Update Task</h3>
+        <p>Let's update your task...</p>
+        <form action="/action_page.php" target="_blank">
+          <select class="w3-select  w3-border" required name="name">
+            <option value="" disabled selected>Select a Task</option>
+            <option *ngFor="let task of tasks" [value]="task.name">{{ task.name }}</option>
+          </select>
+          <select class="w3-select w3-section w3-border" required name="status">
+            <option value="" disabled selected>Select a Status</option>
+            <option value="Todo">Todo</option>
+            <option value="InProgress">InProgress</option>
+            <option value="Completed">Completed</option>
+          </select>
+          <button class="w3-button w3-black w3-section" type="submit">
+            <i class="fa fa-paper-plane"></i> Update Task
+          </button>
+        </form>
+      </div>
+
+      <!-- Delete Task -->
+      <div class="w3-container w3-padding-32" id="contact">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Delete Task</h3>
+        <p>Lets delete tasks...</p>
+      
+        <div *ngFor="let task of tasks">
+          <p>{{ task.name }} <button (click)="deleteTask(task.id)">Delete</button></p>
+        </div>
+      </div>
+      
+      
+  
+  <!-- End page content -->
+  </div>
+  
+  
+  <!-- Footer -->
+  <footer class="w3-center w3-black w3-padding-16">
+    <p>Powered by <a href="https://task.manager.lk" title="W3.CSS" target="_blank" class="w3-hover-text-green">task.manager.lk</a></p>
+  </footer>
+  
+  </body>
+  </html>
+  
+
+
+<!-------------------------------------------------------------------- -- -->
+
+<!-- <p>home works! ---- {{tasks}}</p>
+
+<ul>
+    <li *ngFor="let task of tasks">{{ task.name }}</li>
+</ul>
+
+
+<div class="container">
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Task</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td *ngFor="let task of tasks">{{ task.id }}</td>
+				<td *ngFor="let task of tasks">{{ task.name }}</td>
+				<td *ngFor="let task of tasks">{{ task.status }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div> -->
